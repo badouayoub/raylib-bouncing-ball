@@ -7,7 +7,7 @@ TARGET_DIR = build
 TARGET = $(TARGET_DIR)/ball
 
 all:
-	$(cc) $(source) $(cflags) $(ldflags) -o $(target)
+	$(CC) $(SOURCE) $(CFLAGS) $(LDFLAGS) -o $(TARGET)
 
 run: all
 	./$(TARGET)
