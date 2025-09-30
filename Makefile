@@ -1,10 +1,14 @@
+BIN=ball
+
 CC= gcc
 CFLAGS = -g -Wall -Wextra
 LDFLAGS = $(shell pkg-config --libs --cflags raylib)
+
 SOURCE_DIR = src
-SOURCE = $(SOURCE_DIR)/ball.c
 TARGET_DIR = build
-TARGET = $(TARGET_DIR)/ball
+
+SOURCE = $(SOURCE_DIR)/$(BIN).c
+TARGET = $(TARGET_DIR)/$(BIN)
 
 all:
 	$(CC) $(SOURCE) $(CFLAGS) $(LDFLAGS) -o $(TARGET)
@@ -16,4 +20,4 @@ clean:
 	rm -rf $(TARGET_DIR)/*
 
 gen:
-	jq --null-input '[{"directory": "$(shell pwd)", "file": "$(SOURCE)", "command": "$(CC) $(SOURCE) $(CFLAGS) $(LDFLAGS) -O $(TARGET)"}]' > compile_commands.json
+	compiledb make
